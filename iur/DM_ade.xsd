@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+xmlns:bldg="http://www.opengis.net/citygml/building/2.0" 
+xmlns:core="http://www.opengis.net/citygml/2.0" 
+xmlns:dem="http://www.opengis.net/citygml/relief/2.0" 
+xmlns:gml="http://www.opengis.net/gml" 
+xmlns:dm="http://www.kantei.go.jp/jp/singi/tiiki/toshisaisei/itoshisaisei/iur/dm/1.0"
+xmlns:luse="http://www.opengis.net/citygml/landuse/2.0" 
+xmlns:tran="http://www.opengis.net/citygml/transportation/2.0" 
+xmlns:veg="http://www.opengis.net/citygml/vegetation/2.0" 
+xmlns:wtr="http://www.opengis.net/citygml/waterbody/2.0" 
+xmlns:grp="http://www.opengis.net/citygml/cityobjectgroup/2.0"
+targetNamespace="http://www.kantei.go.jp/jp/singi/tiiki/toshisaisei/itoshisaisei/iur/dm/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:import namespace="http://www.opengis.net/citygml/2.0" schemaLocation="http://schemas.opengis.net/citygml/2.0/cityGMLBase.xsd"/>
+	<xs:import namespace="http://www.opengis.net/citygml/building/2.0" schemaLocation="http://schemas.opengis.net/citygml/building/2.0/building.xsd"/>
+	<xs:import namespace="http://www.opengis.net/citygml/landuse/2.0" schemaLocation="http://schemas.opengis.net/citygml/landuse/2.0/landUse.xsd"/>
+	<xs:import namespace="http://www.opengis.net/citygml/relief/2.0" schemaLocation="http://schemas.opengis.net/citygml/relief/2.0/relief.xsd"/>
+	<xs:import namespace="http://www.opengis.net/citygml/transportation/2.0" schemaLocation="http://schemas.opengis.net/citygml/transportation/2.0/transportation.xsd"/>
+	<xs:import namespace="http://www.opengis.net/citygml/vegetation/2.0" schemaLocation="http://schemas.opengis.net/citygml/vegetation/2.0/vegetation.xsd"/>
+	<xs:import namespace="http://www.opengis.net/citygml/waterbody/2.0" schemaLocation="http://schemas.opengis.net/citygml/waterbody/2.0/waterBody.xsd"/>
+	<xs:import namespace="http://www.opengis.net/citygml/cityobjectgroup/2.0" schemaLocation="http://schemas.opengis.net/citygml/cityobjectgroup/2.0/cityObjectGroup.xsd"/>
+	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
+	<!-- ===================================================================== -->
+	<!-- ===================================================================== -->
+	<xs:complexType name="DmType" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="core:AbstractCityObjectType">
+				<xs:sequence>
+					<xs:element name="dmCode" type="xs:string" minOccurs="0"/>
+					<xs:element name="shapeType" type="xs:string" minOccurs="0"/>
+					<xs:element name="direction" type="xs:double" minOccurs="0"/>
+					<xs:element name="elevation" type="xs:double" minOccurs="0"/>
+					<xs:element name="lod0MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
+					<xs:element name="lod1MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
+					<xs:element name="lod0MultiCurve" type="gml:MultiCurvePropertyType" minOccurs="0"/>
+					<xs:element name="lod1MultiCurve" type="gml:MultiCurvePropertyType" minOccurs="0"/>
+					<xs:element name="lod0MultiPoint" type="gml:MultiPointPropertyType" minOccurs="0"/>
+					<xs:element name="lod1MultiPoint" type="gml:MultiPointPropertyType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="_Dm" type="dm:DmType" abstract="true" substitutionGroup="core:_CityObject"/>
+	<!-- ===================================================================== -->
+	<!-- ===================================================================== -->
+	<xs:complexType name="DmAdministrationType">
+		<xs:complexContent>
+			<xs:extension base="dm:DmType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="DmAdministration" type="dm:DmAdministrationType" substitutionGroup="dm:_Dm"/>
+	<!-- ===================================================================== -->
+	<!-- ===================================================================== -->
+	<xs:complexType name="DmBuildingType">
+		<xs:complexContent>
+			<xs:extension base="dm:DmType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="DmBuilding" type="dm:DmBuildingType" substitutionGroup="dm:_Dm"/>
+	<!-- ===================================================================== -->
+	<!-- ===================================================================== -->
+	<xs:complexType name="DmBuildingPartType">
+		<xs:complexContent>
+			<xs:extension base="dm:DmType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="DmBuildingPart" type="dm:DmBuildingPartType" substitutionGroup="dm:_Dm"/>
+	<!-- ===================================================================== -->
+	<!-- ===================================================================== -->
+	<xs:complexType name="DmWaterBodyType">
+		<xs:complexContent>
+			<xs:extension base="dm:DmType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="DmWaterBody" type="dm:DmWaterBodyType" substitutionGroup="dm:_Dm"/>
+	<!-- ===================================================================== -->	
+	<!-- ===================================================================== -->
+	<xs:complexType name="DmRoadType">
+		<xs:complexContent>
+			<xs:extension base="dm:DmType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="DmRoad" type="dm:DmRoadType" substitutionGroup="dm:_Dm"/>
+	<!-- ===================================================================== -->
+	<!-- ===================================================================== -->
+	<xs:complexType name="DmRailwayType">
+		<xs:complexContent>
+			<xs:extension base="dm:DmType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="DmRailway" type="dm:DmRailwayType" substitutionGroup="dm:_Dm"/>
+	<!-- ===================================================================== -->
+	<!-- ===================================================================== -->
+	<xs:complexType name="DmTrafficAreaType">
+		<xs:complexContent>
+			<xs:extension base="dm:DmType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="DmTrafficArea" type="dm:DmTrafficAreaType" substitutionGroup="dm:_Dm"/>
+	<!-- ===================================================================== -->
+	<!-- ===================================================================== -->
+	<xs:complexType name="DmAuxiliaryTrafficAreaType">
+		<xs:complexContent>
+			<xs:extension base="dm:DmType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="DmAuxiliaryTrafficArea" type="dm:DmAuxiliaryTrafficAreaType" substitutionGroup="dm:_Dm"/>
+	<!-- ===================================================================== -->
+	<!-- ===================================================================== -->
+	<xs:complexType name="DmTunnelType">
+		<xs:complexContent>
+			<xs:extension base="dm:DmType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="DmTunnel" type="dm:DmTunnelType" substitutionGroup="dm:_Dm"/>
+	<!-- ===================================================================== -->
+	<!-- ===================================================================== -->
+	<xs:complexType name="DmTunnelPartType">
+		<xs:complexContent>
+			<xs:extension base="dm:DmType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="DmTunnelPart" type="dm:DmTunnelPartType" substitutionGroup="dm:_Dm"/>
+	<!-- ===================================================================== -->
+	<!-- ===================================================================== -->
+	<xs:complexType name="DmLandUseType">
+		<xs:complexContent>
+			<xs:extension base="dm:DmType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="DmLandUse" type="dm:DmLandUseType" substitutionGroup="dm:_Dm"/>
+	<!-- ===================================================================== -->	
+	<!-- ===================================================================== -->
+	<xs:complexType name="DmBridgeType">
+		<xs:complexContent>
+			<xs:extension base="dm:DmType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="DmBridge" type="dm:DmBridgeType" substitutionGroup="dm:_Dm"/>
+	<!-- ===================================================================== -->	
+	<!-- ===================================================================== -->
+	<xs:complexType name="DmSolitaryVegetationObjectType">
+		<xs:complexContent>
+			<xs:extension base="dm:DmType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="DmSolitaryVegetationObject" type="dm:DmSolitaryVegetationObjectType" substitutionGroup="dm:_Dm"/>
+	<!-- ===================================================================== -->	
+	<xs:element name="language" type="gml:CodeType" substitutionGroup="grp:_GenericApplicationPropertyOfCityObjectGroup"/>
+</xs:schema>

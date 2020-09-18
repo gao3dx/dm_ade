@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.kantei.go.jp/jp/singi/tiiki/toshisaisei/itoshisaisei/iur/dm/1.0" xmlns:core="http://www.opengis.net/citygml/2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
+	targetNamespace="http://www.kantei.go.jp/jp/singi/tiiki/toshisaisei/itoshisaisei/iur/dm/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+
+	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
+	<xs:import namespace="http://www.opengis.net/citygml/2.0" schemaLocation="http://schemas.opengis.net/citygml/2.0/cityGMLBase.xsd"/>
+	<!-- ========================================================================================= -->
+	<!-- ===============================CityGML Generics module ===================================== -->
+	<!-- ========================================================================================= -->
+	<!-- ==================================Generic CityObject ========================================-->
+	<!-- ========================================================================================= -->
+	<xs:complexType name="DmObjectType">
+		<xs:complexContent>
+			<xs:extension base="core:AbstractCityObjectType">
+				<xs:sequence>
+					<xs:element name="class" type="gml:CodeType" minOccurs="0"/>
+					<xs:element name="function" type="gml:CodeType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="usage" type="gml:CodeType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="lod0Geometry" type="gml:GeometryPropertyType" minOccurs="0"/>
+					<xs:element name="lod1Geometry" type="gml:GeometryPropertyType" minOccurs="0"/>
+					<xs:element name="lod2Geometry" type="gml:GeometryPropertyType" minOccurs="0"/>
+					<xs:element name="lod3Geometry" type="gml:GeometryPropertyType" minOccurs="0"/>
+					<xs:element name="lod4Geometry" type="gml:GeometryPropertyType" minOccurs="0"/>
+					<xs:element name="lod0TerrainIntersection" type="gml:MultiCurvePropertyType" minOccurs="0"/>
+					<xs:element name="lod1TerrainIntersection" type="gml:MultiCurvePropertyType" minOccurs="0"/>
+					<xs:element name="lod2TerrainIntersection" type="gml:MultiCurvePropertyType" minOccurs="0"/>
+					<xs:element name="lod3TerrainIntersection" type="gml:MultiCurvePropertyType" minOccurs="0"/>
+					<xs:element name="lod4TerrainIntersection" type="gml:MultiCurvePropertyType" minOccurs="0"/>
+					<xs:element name="lod0ImplicitRepresentation" type="core:ImplicitRepresentationPropertyType" minOccurs="0"/>
+					<xs:element name="lod1ImplicitRepresentation" type="core:ImplicitRepresentationPropertyType" minOccurs="0"/>
+					<xs:element name="lod2ImplicitRepresentation" type="core:ImplicitRepresentationPropertyType" minOccurs="0"/>
+					<xs:element name="lod3ImplicitRepresentation" type="core:ImplicitRepresentationPropertyType" minOccurs="0"/>
+					<xs:element name="lod4ImplicitRepresentation" type="core:ImplicitRepresentationPropertyType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ========================================================================================= -->
+	<xs:element name="DmObject" type="DmObjectType" substitutionGroup="core:_CityObject"/>
+	<!-- ========================================================================================= -->
+	<!-- ==================================Generic Attributes=========================================-->
+	<!-- ========================================================================================= -->
+	<xs:complexType name="AbstractGenericAttributeType" abstract="true">
+		<xs:sequence/>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+	</xs:complexType>
+	<!-- ========================================================================================= -->
+	<xs:element name="_genericAttribute" type="AbstractGenericAttributeType" abstract="true"
+		substitutionGroup="core:_GenericApplicationPropertyOfCityObject"/>
+	<!-- ========================================================================================= -->
+	<xs:complexType name="StringAttributeType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AbstractGenericAttributeType">
+				<xs:sequence>
+					<xs:element name="value" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ========================================================================================= -->
+	<xs:element name="stringAttribute" type="StringAttributeType" substitutionGroup="_genericAttribute"/>
+	<!-- ========================================================================================= -->
+	<xs:complexType name="IntAttributeType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AbstractGenericAttributeType">
+				<xs:sequence>
+					<xs:element name="value" type="xs:integer"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ========================================================================================= -->
+	<xs:element name="intAttribute" type="IntAttributeType" substitutionGroup="_genericAttribute"/>
+	<!-- ========================================================================================= -->
+	<xs:complexType name="DoubleAttributeType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AbstractGenericAttributeType">
+				<xs:sequence>
+					<xs:element name="value" type="xs:double"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ========================================================================================= -->
+	<xs:element name="doubleAttribute" type="DoubleAttributeType" substitutionGroup="_genericAttribute"/>
+	<!-- ========================================================================================= -->
+	<xs:complexType name="DateAttributeType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AbstractGenericAttributeType">
+				<xs:sequence>
+					<xs:element name="value" type="xs:date"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ========================================================================================= -->
+	<xs:element name="dateAttribute" type="DateAttributeType" substitutionGroup="_genericAttribute"/>
+	<!-- ========================================================================================= -->
+	<xs:complexType name="UriAttributeType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AbstractGenericAttributeType">
+				<xs:sequence>
+					<xs:element name="value" type="xs:anyURI"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ========================================================================================= -->
+	<xs:element name="uriAttribute" type="UriAttributeType" substitutionGroup="_genericAttribute"/>
+	<!-- ========================================================================================= -->
+	<xs:complexType name="MeasureAttributeType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AbstractGenericAttributeType">
+				<xs:sequence>
+					<xs:element name="value" type="gml:MeasureType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ========================================================================================= -->
+	<xs:element name="measureAttribute" type="MeasureAttributeType" substitutionGroup="_genericAttribute"/>
+	<!-- ========================================================================================= -->
+	<xs:complexType name="GenericAttributeSetType">
+		<xs:annotation>
+			<xs:documentation>Set of generic attributes with an optional codeSpace. If the codeSpace attribute is present, then its
+				value should identify an authority for the set, such as the organisation or community who defined its content. The generic
+				attribute set may contain arbitrary generic attributes.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AbstractGenericAttributeType">
+				<xs:sequence>
+					<xs:element ref="_genericAttribute" minOccurs="1" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="codeSpace" type="xs:anyURI" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ========================================================================================= -->
+	<xs:element name="genericAttributeSet" type="GenericAttributeSetType" substitutionGroup="_genericAttribute"/>
+	<!-- ========================================================================================= -->
+</xs:schema>
